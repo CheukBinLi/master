@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public interface BaseDao<entity, ID extends Serializable> {
+import project.master.dbmaamger.HibernateReplicationMode;
+
+public interface BaseDao<entity, ID extends Serializable> extends HibernateReplicationMode {
 
 	entity get(ID o) throws Throwable;
 
@@ -67,13 +69,20 @@ public interface BaseDao<entity, ID extends Serializable> {
 	List<Object[]> getListCustomQueryName(String queryName, Map<String, Object> params, boolean isFromat, int page, int size) throws Throwable;
 
 	List<entity> getListEntityCustomQueryName(String queryName, Map<String, Object> params, boolean isFromat, int page, int size) throws Throwable;
+
 	// List<Object[]> getListCustomQueryName(String queryName, Map<String, Object> params, boolean isHql, boolean isFromat, int page, int size) throws Throwable;
 
 	entity save(entity o) throws Throwable;
 
+	void saveOrUpeate(entity o) throws Throwable;
+
 	void update(entity o) throws Throwable;
 
 	void delete(entity o) throws Throwable;
+
+	int executeUpdate(String queryName, Map<String, Object> params, boolean isHql, boolean isFromat) throws Throwable;
+
+	int executeUpdateCustomQueryName(String queryName, Map<String, Object> params, boolean isHql, boolean isFromat) throws Throwable;
 
 	/***
 	 * 单一返回值

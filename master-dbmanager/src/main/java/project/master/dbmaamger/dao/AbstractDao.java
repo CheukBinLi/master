@@ -48,6 +48,10 @@ public abstract class AbstractDao<entity, ID extends Serializable> implements Ba
 		return getDBAdapter().save(o);
 	}
 
+	public void saveOrUpeate(entity o) throws Throwable {
+		getDBAdapter().saveOrUpdate(o);
+	}
+
 	public void update(entity o) throws Throwable {
 		getDBAdapter().update(o);
 	}
@@ -62,6 +66,14 @@ public abstract class AbstractDao<entity, ID extends Serializable> implements Ba
 
 	public Object uniqueResultCustomQueryName(String queryName, boolean isFormat, Map<String, Object> params) throws Throwable {
 		return getDBAdapter().uniqueResult(queryName.toLowerCase(), true, isFormat, params);
+	}
+
+	public int executeUpdate(String queryName, Map<String, Object> params, boolean isHql, boolean isFromat) throws Throwable {
+		return getDBAdapter().executeUpdate(getDBAdapter().queryNameFormat(getEntityClass(), queryName), params, isHql, isFromat);
+	}
+
+	public int executeUpdateCustomQueryName(String queryName, Map<String, Object> params, boolean isHql, boolean isFromat) throws Throwable {
+		return getDBAdapter().executeUpdate(queryName.toLowerCase(), params, isHql, isFromat);
 	}
 
 }

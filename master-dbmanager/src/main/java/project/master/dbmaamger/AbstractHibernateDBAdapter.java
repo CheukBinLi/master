@@ -159,8 +159,25 @@ public abstract class AbstractHibernateDBAdapter implements DBAdapter {
 		return o;
 	}
 
+	public <T> T replicate(T o, String ReplicationMode) throws Throwable {
+		getSession().replicate(o, org.hibernate.ReplicationMode.valueOf(ReplicationMode));
+		return o;
+	}
+
 	public void saveOrUpdate(Object t) throws Throwable {
 		getSession().saveOrUpdate(t);
+	}
+
+	public int executeUpdate(String xql, boolean isHql) throws Throwable {
+		Query query = isHql ? getSession().createQuery(xql) : getSession().createSQLQuery(xql);
+		return query.executeUpdate();
+	}
+
+	public int executeUpdate(String queryName, Map<String, Object> params, boolean isHql, boolean isFromat) throws Throwable {
+		String xql = queryFactory.getXQL(queryName, isFromat, params);
+		Query query = fillParams(isHql ? getSession().createQuery(xql) : getSession().createSQLQuery(xql), params);
+		return query.executeUpdate();
+
 	}
 
 	protected Query fillParams(Query q, Object... o) {
@@ -205,5 +222,4 @@ public abstract class AbstractHibernateDBAdapter implements DBAdapter {
 		this.queryFactory = queryFactory;
 		return this;
 	}
-
 }

@@ -37,6 +37,8 @@ public class User extends AbstractEntity {
 	private String password;
 	private int status;// 帐号状态(锁定、停用、正常)
 	private Date lastLogin;
+	@Column(updatable = false, nullable = false)
+	private Date createDate = new Date();
 
 	public String getId() {
 		return id;
@@ -80,6 +82,15 @@ public class User extends AbstractEntity {
 
 	public User setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
+		return this;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public User setCreateDate(Date createDate) {
+		this.createDate = createDate;
 		return this;
 	}
 

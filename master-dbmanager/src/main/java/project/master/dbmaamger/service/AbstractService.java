@@ -26,12 +26,20 @@ public abstract class AbstractService<entity, ID extends Serializable> implement
 		return getService().save(obj);
 	}
 
+	public void saveOrUpdate(entity obj) throws Throwable {
+		getService().saveOrUpeate(obj);
+	}
+
 	public void update(entity obj) throws Throwable {
 		getService().update(obj);
 	}
 
 	public void delete(entity obj) throws Throwable {
 		getService().delete(obj);
+	}
+
+	public int executeUpdate(String queryName, Map<String, Object> params, boolean isHql, boolean isFromat) throws Throwable {
+		return getService().executeUpdate(queryName, params, isHql, isFromat);
 	}
 
 }

@@ -27,6 +27,17 @@ public class ObjectFill {
 		return fillObject(t.newInstance(), data);
 	}
 
+	public final Map<String, Object> objectToMap(Object o) throws IllegalArgumentException, IllegalAccessException, InstantiationException {
+		if (!FIELDS.containsKey(o.getClass()))
+			scanClass(o.getClass());
+		Map<String, Field> fields = FIELDS.get(o.getClass());
+		Map<String, Object> result = new HashMap<String, Object>();
+		for (Entry<String, Field> en : fields.entrySet()) {
+			result.put(en.getKey(), en.getValue().get(o));
+		}
+		return result;
+	}
+
 	public final <T> T fillObject(T t, Map<String, ?> data) throws IllegalArgumentException, IllegalAccessException {
 		System.out.println(t.getClass());
 		Class<?> c = t.getClass();

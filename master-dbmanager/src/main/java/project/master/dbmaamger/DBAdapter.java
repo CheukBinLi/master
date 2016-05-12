@@ -218,12 +218,28 @@ public interface DBAdapter {
 	public <T> T save(T t) throws Throwable;
 
 	/***
+	 * 插入
+	 * 
+	 * @param t
+	 *            对象
+	 * @param ReplicationMode
+	 *            插入模式()
+	 * @return
+	 * @throws Throwable
+	 */
+	public <T> T replicate(T t, String ReplicationMode) throws Throwable;
+
+	/***
 	 * 插入或更新
 	 * 
 	 * @param t
 	 * @throws Throwable
 	 */
 	public void saveOrUpdate(Object t) throws Throwable;
+
+	int executeUpdate(String xql, boolean isHql) throws Throwable;
+
+	int executeUpdate(String queryName, Map<String, Object> params, boolean isHql, boolean isFromat) throws Throwable;
 
 	public String queryNameFormat(Class<?> entry, String queryName);
 }
