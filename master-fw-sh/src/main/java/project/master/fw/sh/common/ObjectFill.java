@@ -52,7 +52,6 @@ public class ObjectFill {
 				continue;
 			field.set(t, getValue(field.getType(), value));
 		}
-
 		return t;
 	}
 
@@ -67,19 +66,42 @@ public class ObjectFill {
 		else if (simpleName.equalsIgnoreCase("boolean") || simpleName.equalsIgnoreCase("Boolean"))
 			return Boolean.valueOf(getFirstValue(isArray, data));
 		else if (simpleName.equalsIgnoreCase("int") || simpleName.equalsIgnoreCase("Integer"))
-			return Integer.valueOf(getFirstValue(isArray, data));
+			try {
+				return Integer.valueOf(getFirstValue(isArray, data));
+			} catch (Exception e5) {
+				return 0;
+			}
 		else if (simpleName.equalsIgnoreCase("byte"))
 			return Byte.valueOf(getFirstValue(isArray, data));
 		else if (simpleName.equalsIgnoreCase("char") || simpleName.equalsIgnoreCase("Character"))
-			return Character.valueOf(getFirstValue(isArray, data).charAt(0));
+			try {
+				return Character.valueOf(getFirstValue(isArray, data).charAt(0));
+			} catch (Exception e4) {
+				return 0;
+			}
 		else if (simpleName.equalsIgnoreCase("double"))
-			return Double.valueOf(getFirstValue(isArray, data));
+			try {
+				return Double.valueOf(getFirstValue(isArray, data));
+			} catch (Exception e3) {
+				return 0.0;
+			}
 		else if (simpleName.equalsIgnoreCase("long"))
-			return Long.valueOf(getFirstValue(isArray, data));
+			try {
+				return Long.valueOf(getFirstValue(isArray, data));
+			} catch (Exception e2) {
+				return 0L;
+			}
 		else if (simpleName.equalsIgnoreCase("short"))
-			return Short.valueOf(getFirstValue(isArray, data));
+			try {
+				return Short.valueOf(getFirstValue(isArray, data));
+			} catch (Exception e1) {
+			}
 		else if (simpleName.equalsIgnoreCase("float"))
-			return Float.valueOf(getFirstValue(isArray, data));
+			try {
+				return Float.valueOf(getFirstValue(isArray, data));
+			} catch (Exception e) {
+				return 0;
+			}
 		return data;
 	}
 

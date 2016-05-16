@@ -27,4 +27,35 @@ public class UpLoadFileFactory {
 		old.renameTo(new File(newPath));
 	}
 
+	public void deleteFile(String path, String... fileName) {
+		if (null == fileName || null == path)
+			return;
+		File file;
+		for (String str : fileName) {
+			file = new File(path + str);
+			if (file.exists())
+				file.delete();
+		}
+	}
+
+	public void deleteSignleFile(String path, String fileName) {
+		if (null == fileName || null == path)
+			return;
+		File file;
+		file = new File(path + fileName);
+		if (file.exists())
+			file.delete();
+	}
+
+	public void deleteFile(String... filePath) {
+		if (null == filePath)
+			return;
+		File file;
+		for (String str : filePath) {
+			file = new File(str);
+			if (file.exists())
+				file.delete();
+		}
+	}
+
 }
