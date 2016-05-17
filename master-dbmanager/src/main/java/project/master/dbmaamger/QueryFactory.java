@@ -135,9 +135,11 @@ public class QueryFactory implements QueryType {
 
 		@Override
 		public void characters(char[] ch, int start, int length) throws SAXException {
-			value = new String(ch, start, length).replaceAll("(\n|\t|)", "");
+			value = new String(ch, start, length).replaceAll("(\n|\t)", "");
 			if (value.length() > 0) {
 				try {
+//					System.err.println(name+":"+value);
+//					System.err.println();
 					put(String.format("%s.%s", packageName, name).toLowerCase(), alias ? alias(value) : value, format);
 				} catch (Exception e) {
 				}
@@ -151,5 +153,6 @@ public class QueryFactory implements QueryType {
 					str = str.replaceAll(en.getKey(), en.getValue());
 			return str;
 		}
+		
 	}
 }
