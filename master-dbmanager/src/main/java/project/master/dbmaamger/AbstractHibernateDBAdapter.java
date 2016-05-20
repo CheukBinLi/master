@@ -8,6 +8,8 @@ import java.util.Map.Entry;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.transform.ResultTransformer;
+import org.hibernate.transform.Transformers;
 
 import freemarker.template.TemplateException;
 

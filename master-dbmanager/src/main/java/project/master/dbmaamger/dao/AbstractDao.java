@@ -24,12 +24,12 @@ public abstract class AbstractDao<entity, ID extends Serializable> implements Ba
 		return getDBAdapter().getListByXqlQueryName(getDBAdapter().queryNameFormat(getEntityClass(), "list"), true, true, params, page, size);
 	}
 
-	public List<Object[]> getList(String queryName, Map<String, Object> params, boolean isFromat, int page, int size) throws Throwable {
+	public <T> List<T> getList(String queryName, Map<String, Object> params, boolean isFromat, int page, int size) throws Throwable {
 		return getDBAdapter().getListByXqlQueryName(getDBAdapter().queryNameFormat(getEntityClass(), queryName), true, isFromat, params, page, size);
 		// return getDBAdapter().getListByXqlQueryName(getDBAdapter().queryNameFormat(getEntityClass(), queryName), true, isFromat, params, page, size);
 	}
 
-	public List<Object[]> getListCustomQueryName(String queryName, Map<String, Object> params, boolean isFromat, int page, int size) throws Throwable {
+	public <T> List<T> getListCustomQueryName(String queryName, Map<String, Object> params, boolean isFromat, int page, int size) throws Throwable {
 		// return getDBAdapter().getListByXqlQueryName(queryName.toLowerCase(), true, isFromat, params, page, size);
 		return getDBAdapter().getListByXqlQueryName(queryName.toLowerCase(), true, isFromat, params, page, size);
 	}

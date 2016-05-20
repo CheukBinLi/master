@@ -42,4 +42,8 @@ public abstract class AbstractService<entity, ID extends Serializable> implement
 		return getService().executeUpdate(queryName, params, isHql, isFromat);
 	}
 
+	public int getCount(Map<String, Object> params) throws Throwable {
+		return Integer.valueOf(getService().uniqueResult("count", true, params).toString());
+	}
+
 }

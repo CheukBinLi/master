@@ -48,7 +48,7 @@ public interface BaseDao<entity, ID extends Serializable> extends HibernateRepli
 	 * @throws Throwable
 	 */
 	// List<Object[]> getList(String queryName, Map<String, Object> params, boolean isHql, boolean isFormat, int page, int size) throws Throwable;
-	List<Object[]> getList(String queryName, Map<String, Object> params, boolean isFormat, int page, int size) throws Throwable;
+	<T> List<T> getList(String queryName, Map<String, Object> params, boolean isFormat, int page, int size) throws Throwable;
 
 	List<entity> getListEntity(String queryName, Map<String, Object> params, boolean isFormat, int page, int size) throws Throwable;
 
@@ -66,7 +66,7 @@ public interface BaseDao<entity, ID extends Serializable> extends HibernateRepli
 	 * @return
 	 * @throws Throwable
 	 */
-	List<Object[]> getListCustomQueryName(String queryName, Map<String, Object> params, boolean isFromat, int page, int size) throws Throwable;
+	<T> List<T> getListCustomQueryName(String queryName, Map<String, Object> params, boolean isFromat, int page, int size) throws Throwable;
 
 	List<entity> getListEntityCustomQueryName(String queryName, Map<String, Object> params, boolean isFromat, int page, int size) throws Throwable;
 

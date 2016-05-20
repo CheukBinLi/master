@@ -20,4 +20,6 @@ public interface BaseService<entity, ID extends Serializable> {
 
 	int executeUpdate(String queryName, Map<String, Object> params, boolean isHql, boolean isFromat) throws Throwable;
 
+	int getCount(Map<String, Object> params) throws Throwable;
+
 }
